@@ -28,16 +28,24 @@
 
 #include <SPI.h>
 #include <Ethernet.h>
+#include <DHT22.h>
+#include <stdio.h>
+
 
 // MAC address from Ethernet shield sticker under board
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 IPAddress ip(10, 0, 0, 20); // IP address, may need to change depending on network
 EthernetServer server(80);  // create a server at port 80
+#define DHT22_PIN 7
 
 String HTTP_req;            // stores the HTTP request
 
+DHT22 dht(DHT22_PIN);
+
 void setup()
 {
+    // Initialize DHT sensor
+    dht.begin();
     Ethernet.begin(mac, ip);  // initialize Ethernet device
     server.begin();           // start to listen for clients
     Serial.begin(9600);       // for diagnostics
@@ -126,10 +134,6 @@ void loop()
 // send the state of the switch to the web browser
 void GetSwitchState(EthernetClient cl)
 {
-    if (digitalRead(3)) {
-        cl.println("Switch state: ON");
-    }
-    else {
-        cl.println("Switch state: OFF");
-    }
+    cl.println("temperature " + dht.readTemperature());
+    cl.println("humidity: " + dht.readHumidity());
 }
