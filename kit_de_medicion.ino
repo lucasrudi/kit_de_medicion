@@ -37,15 +37,16 @@ byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
 IPAddress ip(10, 0, 0, 20); // IP address, may need to change depending on network
 EthernetServer server(80);  // create a server at port 80
 #define DHT22_PIN 7
+DHT22 myDHT22(DHT22_PIN);
 
 String HTTP_req;            // stores the HTTP request
 
 DHT22 dht(DHT22_PIN);
+DHT22_ERROR_t errorCode;
 
 void setup()
 {
-    // Initialize DHT sensor
-    dht.begin();
+    
     Ethernet.begin(mac, ip);  // initialize Ethernet device
     server.begin();           // start to listen for clients
     Serial.begin(9600);       // for diagnostics
@@ -54,6 +55,9 @@ void setup()
 
 void loop()
 {
+    
+
+    
     EthernetClient client = server.available();  // try to get client
 
     if (client) {  // got client?
@@ -126,7 +130,7 @@ void loop()
                 }
             } // end if (client.available())
         } // end while (client.connected())
-        delay(1);      // give the web browser time to receive the data
+        delay(1000);      // give the web browser time to receive the data
         client.stop(); // close the connection
     } // end if (client)
 }
@@ -134,6 +138,50 @@ void loop()
 // send the state of the switch to the web browser
 void GetSwitchState(EthernetClient cl)
 {
-    cl.println("temperature " + dht.readTemperature());
-    cl.println("humidity: " + dht.readHumidity());
+    errorCode = myDHT22.readData();
+    
+    switch(errorCode)
+  {
+    case DHT_ERROR_NONE:
+      Serial.print("Got Data ");
+      Serial.print(myDHT22.getTemperatureC());
+      Serial.print("C ");
+      Serial.print(myDHT22.getHumidity());
+      Serial.println("%");
+      // Alternately, with integer formatting which is clumsier but more compact to store and
+	  // can be compared reliably for equality:
+	  //	  
+      char buf[128];
+      sprintf(buf, "Integer-only reading: Temperature %hi.%01hi C, Humidity %i.%01i %% RH",
+                   myDHT22.getTemperatureCInt()/10, abs(myDHT22.getTemperatureCInt()%10),
+                   myDHT22.getHumidityInt()/10, myDHT22.getHumidityInt()%10);
+      Serial.println(buf);
+      break;
+    case DHT_ERROR_CHECKSUM:
+      Serial.print("check sum error ");
+      Serial.print(myDHT22.getTemperatureC());
+      Serial.print("C ");
+      Serial.print(myDHT22.getHumidity());
+      Serial.println("%");
+      break;
+    case DHT_BUS_HUNG:
+      Serial.println("BUS Hung ");
+      break;
+    case DHT_ERROR_NOT_PRESENT:
+      Serial.println("Not Present ");
+      break;
+    case DHT_ERROR_ACK_TOO_LONG:
+      Serial.println("ACK time out ");
+      break;
+    case DHT_ERROR_SYNC_TIMEOUT:
+      Serial.println("Sync Timeout ");
+      break;
+    case DHT_ERROR_DATA_TIMEOUT:
+      Serial.println("Data Timeout ");
+      break;
+    case DHT_ERROR_TOOQUICK:
+      Serial.println("Polled to quick ");
+      break;
+  }
+    
 }
