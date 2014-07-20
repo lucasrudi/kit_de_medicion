@@ -129,13 +129,30 @@ body {
   -webkit-transform: translateY(-50%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  width: auto;
   font-family: "Avenir Black", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 6em;
-  letter-spacing: -.05em; }
+  letter-spacing: -.07em;
+  line-height: .6em; }
   .numero .simbolo {
+    -webkit-transform: translateY(-70px);
+    -moz-transform: translateY(-70px);
+    -ms-transform: translateY(-70px);
+    -o-transform: translateY(-70px);
+    transform: translateY(-70px);
     font-size: .5em;
     display: inline-block;
     font-family: "Avenir Bold", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+.referencia {
+  margin: 0 auto;
+  width: 250px;
+  font-family: "Avenir Bold", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: .12em;
+  text-transform: uppercase;
+  letter-spacing: 0em;
+  line-height: 3.5em;
+  border-top: 10px solid black; }
 
 a {
   color: #00B7FF; }

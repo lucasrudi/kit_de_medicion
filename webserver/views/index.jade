@@ -2,8 +2,10 @@ extends layout
 
 block content
   #temperatura
-    .numero
-        | 16
+    .numero #{json.Temperatura}
         .simbolo
             | °
+        .referencia
+            | Temperatura
+
   #humedad

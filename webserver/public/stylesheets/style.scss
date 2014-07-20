@@ -61,16 +61,31 @@ body {
 
 .numero {
     @include vertical-align();
+    width:                      auto;
     font-family:                $font-family-black;
     font-size:                  6em;
-    letter-spacing:             -.05em;
+    letter-spacing:             -.07em;
+    line-height:                .6em;
     .simbolo {
+        @include transform(translateY(-70px));
         font-size:              .5em;
         display:                inline-block; 
         font-family:            $font-family-bold;   
     }
 }
 
+.referencia {
+    margin:                     0 auto;
+    width:                      250px;
+    font-family:                $font-family-bold;
+    font-size:                  .12em;
+    text-transform:             uppercase;
+    letter-spacing:             0em;
+    line-height:                3.5em;
+
+    border-top:                 10px solid black;
+
+}
 
 a {
   color: #00B7FF;
