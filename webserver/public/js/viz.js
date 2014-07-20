@@ -11,15 +11,17 @@
       console.log(datajson.Temperatura);
     });
   }
+  
+  loadData(); 
 
   var n = 10,
       random = d3.random.normal(0, .4);
 
       data = d3.range(n).map(random);
 
-  var margin = {top: 0, right: 0, bottom: 0, left: 0},
-      width = 1280 - margin.left - margin.right,
-      height = 720 - margin.top - margin.bottom;
+var margin = 60,
+    width = parseInt(d3.select("#chart").style("width")) - margin*2,
+    height = parseInt(d3.select("#chart").style("height")) - margin*2;
 
   var x = d3.scale.linear()
       .domain([1, n - 2])
@@ -34,25 +36,12 @@
       .x(function(d, i) { return x(i); })
       .y(function(d, i) { return y(d); });
 
-  // var x = d3.scale.linear()
-  //     .domain([1, n - 2])
-  //     .range([0, width]);
-
-  // var y = d3.scale.linear()
-  //     .domain([0, d3.max(data, function(d) { return d[1]; })])
-  //     .range([height, 0]);
-
-  // var line = d3.svg.line()
-  //     .interpolate("basis")
-  //     .x(function(d, i) { return x(i); })
-  //     .y(function(d, i) { return y(d); });
-
 
   // var temperatura = d3.select("#temperatura .numero .valor")
   //     .datum(data)
   //     .html(function d(){d.Temperatura});
 
-  var svg = d3.select("#temperatura").append("svg")
+  var svg = d3.select("#chart").append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .attr("shape-rendering","optimizeSpeed")
