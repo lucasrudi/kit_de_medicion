@@ -9,7 +9,8 @@
       mongoose = require('mongoose'),
       mongooseExtend = require('mongoose-schema-extend'),
       mongooseWhen = require('mongoose-when'),
-      path = require('path');
+      path = require('path'),
+      messuresDaemon = require('./daemon');
 
   var app = express();
   
@@ -30,8 +31,17 @@
   }
 
   router.init(app);
-
-  http.createServer(app).listen(app.get('port'), function(){
+  var server =http.createServer(app);
+  server.listen(app.get('port'), function(){
     console.log('Express server listening on port ' + app.get('port'));
   });
   
+  
+  
+process.on('SIGTERM', function () {
+  if (server === undefined) return;
+  server.close(function () {
+    // Disconnect from cluster master
+    process.disconnect && process.disconnect();
+  });
+});

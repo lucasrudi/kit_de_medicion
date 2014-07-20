@@ -16,5 +16,4 @@ module.exports.init = function (app) {
   app.get('/', Routes.home);
   app.get(ApiPrefix, Routes.homeAPI);
   //set authentication routes
-
 };
