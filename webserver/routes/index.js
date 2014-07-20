@@ -12,7 +12,9 @@ module.exports.init = function (app) {
   var ApiPrefix = '/api/v1/';
   
   Routes.home = require('./app/home');
+  Routes.homeAPI = require('./api/home');
   app.get('/', Routes.home);
+  app.get(ApiPrefix, Routes.homeAPI);
   //set authentication routes
 
 };
