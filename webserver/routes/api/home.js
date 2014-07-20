@@ -21,7 +21,7 @@ var home = function (req, res) {
       viewData.json.Temperatura = 12;
       viewData.json.Humedad = 15;
     }
-    res.render('index', viewData);
+    res.send(viewData.json, 200);
   });
 };
 
