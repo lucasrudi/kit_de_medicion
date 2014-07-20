@@ -12,4 +12,22 @@ El kit utiliza un Arduino Uno con un sensor [DTH-22](http://www.adafruit.com/pro
 En la primera iteración el sketch de Arduino interpreta la señal del sensor y emite HTML. </br> En la segunda iteración, el Arduino emite directamente JSON.
 
 
+## Instalación del servidor
+
+### Requiere
+
+* node.js
+* npm
+* mongodb
+* bower
+
+#### Instalación
+
+	> npm install
+	> bower install
+	
+	> mongod
+	> node app
+	
+	
 

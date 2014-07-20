@@ -60,6 +60,7 @@ body {
 }
 
 .numero {
+    z-index: 2;
     @include vertical-align();
     width:                      auto;
     font-family:                $font-family-black;
@@ -86,7 +87,22 @@ body {
     border-top:                 10px solid black;
 
 }
+svg {
+  z-index: 1;
+  position:                     absolute;
+  top: 0; left: 0;
+  font-size: .2em;
+}
 
-a {
-  color: #00B7FF;
+.line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
 }
