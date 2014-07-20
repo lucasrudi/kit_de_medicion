@@ -18,8 +18,8 @@ var home = function (req, res) {
     } else {
       
       viewData.json.created = new Date();
-      viewData.json.Temperatura = 12;
-      viewData.json.Humedad = 15;
+      viewData.json.Temperatura = Math.floor(Math.random() * 30) + 9 ;
+      viewData.json.Humedad = Math.floor(Math.random() * 100) + 0 ;
     }
     res.send(viewData.json, 200);
   });

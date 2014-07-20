@@ -8,19 +8,23 @@ var home = function (req, res) {
     section: 'home'
   };
   
-  request('http://' + config.client.ADDRESS + config.client.PORT, function(error, response, body) {
-    console.log(error);
+  var endpoint = 'http://' + config.client.ADDRESS + ':' +config.client.PORT;
+  console.log(endpoint);
+  request(endpoint, function(error, response, body) {
     viewData.json = {};
     if (!error && response.statusCode == 200) {
-      viewData.json = body;
+      var metric = JSON.parse(body);
+      viewData.json.Humedad = metric.Humedad;
+      viewData.json.Temperatura = metric.Temperatura;
       viewData.json.created = new Date();
       
     } else {
       
       viewData.json.created = new Date();
-      viewData.json.Temperatura = 12;
-      viewData.json.Humedad = 15;
+      viewData.json.Temperatura = 12.4;
+      viewData.json.Humedad = 15.7;
     }
+    
     res.render('index', viewData);
   });
 };
