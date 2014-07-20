@@ -1,2 +1,5 @@
-src/
-node_modules/
+src
+node_modules
+.sass-cache
+webserver/public/components
+npm-debug.log
