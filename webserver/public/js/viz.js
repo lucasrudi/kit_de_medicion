@@ -29,7 +29,8 @@
   .range([0, width]);
 
   var y = d3.scale.linear()
-  .domain([-1, 1])
+  // .domain([-1, 1])
+  // d3.max(values, function(d) { return d.price; })]).nice()
   .range([height, 0])
   .nice();
 
@@ -55,6 +56,9 @@
   .attr("color-rendering","optimizeSpeed")
   .append("g")
   .attr("transform", "translate(" + margin + "," + margin + ")");
+
+  y.domain(d3.extent(data, function(d) { return d.Temperatura; }));
+
 
   chart.append("defs").append("clipPath")
   .attr("id", "clip")
