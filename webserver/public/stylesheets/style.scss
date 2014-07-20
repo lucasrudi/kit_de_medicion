@@ -2,14 +2,14 @@
 @import "../components/UtilityBelt/utility-belt";
 
 @include font-face("Avenir Regular", "../fonts/AvenirNextLTPro-Regular");
-@include font-face("Avenir Heavy", "../fonts/AvenirNextLTPro-Heavy");
+@include font-face("Avenir Black", "../fonts/avenir-black");
 
 //== Fuentes por defecto
 //
 //## Avenir Heavy.
 
 $font-family-regular:      "Avenir Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-bold:      "Avenir Heavy", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-bold:      "Avenir Black", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
 //== Colores del sitio
 //
@@ -17,6 +17,15 @@ $font-family-bold:      "Avenir Heavy", "Helvetica Neue", Helvetica, Arial, sans
 
 $temperatura:                   #fae003;
 $humedad:                       #2dc7c2;
+
+//== Mixins
+@mixin vertical-align {
+    position: relative;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
 
 //== Resets
 
@@ -48,14 +57,18 @@ body {
     text-align: center;
 }
 
-.numero, .simbolo {
+.numero {
+    @include vertical-align();
     font-family:                $font-family-bold;
-    @include ghostVerticalAlign();
+    font-size:                  6em;
+    letter-spacing:             -.05em;
+    .simbolo {
+        font-size:              .5em;
+        display:                inline-block; 
+        font-family:            $font-family-regular;   
+    }
 }
 
-.numero {
-    font-size:                  3em;
-}
 
 a {
   color: #00B7FF;

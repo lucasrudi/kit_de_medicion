@@ -84,11 +84,11 @@ For perfectly aligned grids that don't rely on floating elements and difficult c
   src: url("../fonts/AvenirNextLTPro-Regular.eot");
   src: url("../fonts/AvenirNextLTPro-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/AvenirNextLTPro-Regular.woff") format("woff"), url("../fonts/AvenirNextLTPro-Regular.ttf") format("truetype"), url("../fonts/AvenirNextLTPro-Regular.svg#Avenir Regular") format("svg"); }
 @font-face {
-  font-family: "Avenir Heavy";
+  font-family: "Avenir Black";
   font-weight: normal;
   font-style: normal;
-  src: url("../fonts/AvenirNextLTPro-Heavy.eot");
-  src: url("../fonts/AvenirNextLTPro-Heavy.eot?#iefix") format("embedded-opentype"), url("../fonts/AvenirNextLTPro-Heavy.woff") format("woff"), url("../fonts/AvenirNextLTPro-Heavy.ttf") format("truetype"), url("../fonts/AvenirNextLTPro-Heavy.svg#Avenir Heavy") format("svg"); }
+  src: url("../fonts/avenir-black.eot");
+  src: url("../fonts/avenir-black.eot?#iefix") format("embedded-opentype"), url("../fonts/avenir-black.woff") format("woff"), url("../fonts/avenir-black.ttf") format("truetype"), url("../fonts/avenir-black.svg#Avenir Black") format("svg"); }
 * {
   margin: 0; }
 
@@ -117,17 +117,19 @@ body {
   background-color: #fae003;
   text-align: center; }
 
-.numero, .simbolo {
-  font-family: "Avenir Heavy", "Helvetica Neue", Helvetica, Arial, sans-serif; }
-  .numero:before, .simbolo:before {
-    content: '';
-    display: inline-block;
-    vertical-align: middle;
-    height: 100%;
-    width: .1px; }
-
 .numero {
-  font-size: 3em; }
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-family: "Avenir Black", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 6em;
+  letter-spacing: -.05em; }
+  .numero .simbolo {
+    font-size: .5em;
+    display: inline-block;
+    font-family: "Avenir Regular", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 a {
   color: #00B7FF; }
