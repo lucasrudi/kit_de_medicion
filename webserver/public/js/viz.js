@@ -2,6 +2,10 @@
 
   'use strict';
 
+
+  var margin = 20,
+      width = parseInt(d3.select("#chart").style("width")) - margin*2,
+      height = parseInt(d3.select("#chart").style("height")) - margin*2;
   var data = [],
       timeout;
 
@@ -19,9 +23,6 @@
 
       data = d3.range(n).map(random);
 
-var margin = 60,
-    width = parseInt(d3.select("#chart").style("width")) - margin*2,
-    height = parseInt(d3.select("#chart").style("height")) - margin*2;
 
   var x = d3.scale.linear()
       .domain([1, n - 2])
@@ -29,7 +30,13 @@ var margin = 60,
 
   var y = d3.scale.linear()
       .domain([-1, 1])
-      .range([height, 0]);
+      .range([height, 0])
+      .nice();
+
+  var yAxis = d3.svg.axis()
+      .scale(y)
+      .orient("right");
+
 
   var line = d3.svg.line()
       .interpolate("basis")
@@ -41,26 +48,25 @@ var margin = 60,
   //     .datum(data)
   //     .html(function d(){d.Temperatura});
 
-  var svg = d3.select("#chart").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+  var chart = d3.select("#chart")
+        .attr("width", width + margin*2)
+        .attr("height", height + margin*2)
         .attr("shape-rendering","optimizeSpeed")
         .attr("color-rendering","optimizeSpeed")
-        .attr("viewBox", "0 0 1280 720")
       .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + margin + "," + margin + ")");
 
-  svg.append("defs").append("clipPath")
+  chart.append("defs").append("clipPath")
       .attr("id", "clip")
     .append("rect")
       .attr("width", width)
       .attr("height", height);
 
-  svg.append("g")
+  chart.append("g")
       .attr("class", "y axis")
-      .call(d3.svg.axis().scale(y).orient("right"));
+      .call(yAxis);
 
-  var path = svg.append("g")
+  var path = chart.append("g")
       .attr("clip-path", "url(#clip)")
     .append("path")
       .datum(data)
