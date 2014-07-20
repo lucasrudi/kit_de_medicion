@@ -1,8 +1,18 @@
+var express = require('express'),
+    configuration = require('../config');
+  
+module.exports.init = function (app) {
 
-/*
- * GET home page.
- */
+  // Routes
+  var Routes = {
+    api: {}
+  };
 
-exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+  // API Prefix
+  var ApiPrefix = '/api/v1/';
+  
+  Routes.home = require('./app/home');
+  app.get('/', Routes.home);
+  //set authentication routes
+
 };

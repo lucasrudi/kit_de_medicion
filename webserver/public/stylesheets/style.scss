@@ -2,6 +2,7 @@
 @import "../components/UtilityBelt/utility-belt";
 
 @include font-face("Avenir Regular", "../fonts/AvenirNextLTPro-Regular");
+@include font-face("Avenir Bold", "../fonts/AvenirNextLTPro-Bold");
 @include font-face("Avenir Black", "../fonts/avenir-black");
 
 //== Fuentes por defecto
@@ -9,7 +10,8 @@
 //## Avenir Heavy.
 
 $font-family-regular:      "Avenir Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-bold:      "Avenir Black", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-bold:      "Avenir Bold", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-black:      "Avenir Black", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
 
 //== Colores del sitio
 //
@@ -59,13 +61,13 @@ body {
 
 .numero {
     @include vertical-align();
-    font-family:                $font-family-bold;
+    font-family:                $font-family-black;
     font-size:                  6em;
     letter-spacing:             -.05em;
     .simbolo {
         font-size:              .5em;
         display:                inline-block; 
-        font-family:            $font-family-regular;   
+        font-family:            $font-family-bold;   
     }
 }
 

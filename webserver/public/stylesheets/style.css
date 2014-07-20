@@ -84,6 +84,12 @@ For perfectly aligned grids that don't rely on floating elements and difficult c
   src: url("../fonts/AvenirNextLTPro-Regular.eot");
   src: url("../fonts/AvenirNextLTPro-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/AvenirNextLTPro-Regular.woff") format("woff"), url("../fonts/AvenirNextLTPro-Regular.ttf") format("truetype"), url("../fonts/AvenirNextLTPro-Regular.svg#Avenir Regular") format("svg"); }
 @font-face {
+  font-family: "Avenir Bold";
+  font-weight: normal;
+  font-style: normal;
+  src: url("../fonts/AvenirNextLTPro-Bold.eot");
+  src: url("../fonts/AvenirNextLTPro-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/AvenirNextLTPro-Bold.woff") format("woff"), url("../fonts/AvenirNextLTPro-Bold.ttf") format("truetype"), url("../fonts/AvenirNextLTPro-Bold.svg#Avenir Bold") format("svg"); }
+@font-face {
   font-family: "Avenir Black";
   font-weight: normal;
   font-style: normal;
@@ -129,7 +135,7 @@ body {
   .numero .simbolo {
     font-size: .5em;
     display: inline-block;
-    font-family: "Avenir Regular", "Helvetica Neue", Helvetica, Arial, sans-serif; }
+    font-family: "Avenir Bold", "Helvetica Neue", Helvetica, Arial, sans-serif; }
 
 a {
   color: #00B7FF; }
