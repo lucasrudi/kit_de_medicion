@@ -8,7 +8,7 @@ var home = function (req, res) {
     section: 'home'
   };
   
-  request('http://' + config.client.ADDRESS + config.client.PORT, function(error, response, body) {
+  request({'url': 'http://' + config.client.ADDRESS + config.client.PORT, 'timeout': 1}, function(error, response, body) {
     console.log(error);
     viewData.json = {};
     if (!error && response.statusCode == 200) {

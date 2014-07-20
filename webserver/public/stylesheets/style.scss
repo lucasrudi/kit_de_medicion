@@ -60,6 +60,7 @@ body {
 }
 
 .numero {
+    z-index: 2;
     @include vertical-align();
     width:                      auto;
     font-family:                $font-family-black;
@@ -87,7 +88,10 @@ body {
 
 }
 svg {
-  font: 10px sans-serif;
+  z-index: 1;
+  position:                     absolute;
+  top: 0; left: 0;
+  font-size: .2em;
 }
 
 .line {

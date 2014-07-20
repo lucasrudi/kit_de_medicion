@@ -124,6 +124,7 @@ body {
   text-align: center; }
 
 .numero {
+  z-index: 2;
   position: relative;
   top: 50%;
   -webkit-transform: translateY(-50%);
@@ -155,7 +156,11 @@ body {
   border-top: 10px solid black; }
 
 svg {
-  font: 10px sans-serif; }
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: .2em; }
 
 .line {
   fill: none;
