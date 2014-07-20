@@ -6,30 +6,34 @@
   var margin = 20,
   width = parseInt(d3.select("#chart").style("width")) - margin*2,
   height = parseInt(d3.select("#chart").style("height")) - margin*2;
-  var data = [],
-  timeout;
+  
+  var data = [];
 
-  function loadData() {
+  var loadData =function loadData(callback) {
     d3.json("/api/v1/", function(error, datajson) {
-      timeout = setTimeout(loadData, 1000);
-      // console.log(datajson.Temperatura);
+      data.push(datajson.Temperatura);
+      d3.map(data);
+      
+
+      callback();
     });
   }
   
-  loadData(); 
+  //loadData(); 
 
-  var n = 10,
-  random = d3.random.normal(0, .4);
+  var n = 30,
+  random = d3.random.normal(0, .1);
 
-  data = d3.range(n).map(random);
+  //d3.range(n).map(random);
+  //d3.range(30);
 
 
   var x = d3.scale.linear()
-  .domain([1, n - 2])
+  .domain([1, 5])
   .range([0, width]);
 
   var y = d3.scale.linear()
-  .domain([-1, 1])
+  .domain([-5, 50])
   .range([height, 0])
   .nice();
 
@@ -73,28 +77,35 @@
   .attr("class", "line")
   .attr("d", line);
 
+  
   tick();
 
   function tick() {
 
     // push a new data point onto the back
-    data.push(random());
-
-    loadData();
-
-    // redraw the line, and slide it to the left
-    path
-    .attr("d", line)
-    .attr("transform", null)
-    .transition()
-    .duration(500)
-    .ease("linear")
-    .attr("transform", "translate(" + x(0) + ",0)")
-    .each("end", tick);
+    
+    
+    loadData(function (dataJson) {
+      // redraw the line, and slide it to the left
+      
+      path
+      .attr("d", line)
+      .attr("transform", null)
+      .transition()
+      .duration(3100)
+      .ease("linear")
+      .attr("transform", "translate(" + x(0) + ",0)")
+      .each("end", tick);
+      d3.select(".valor").datum(data[data.length -1]).html(function d(temperature) {
+        return temperature;
+      });
 
     // pop the old data point off the front
-    data.shift();
+    
 
+  });
+
+    
   }
 
 })()
