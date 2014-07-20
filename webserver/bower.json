@@ -13,6 +13,7 @@
     "public"
   ],
   "dependencies": {
-    "bourbon": "~4.0.2"
+    "bourbon": "~4.0.2",
+    "UtilityBelt": "~1.1.0"
   }
 }

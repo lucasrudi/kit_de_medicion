@@ -1,4 +1,5 @@
 src
 node_modules
 .sass-cache
-public/components
+webserver/public/components
+npm-debug.log
