@@ -60,9 +60,6 @@
   .append("g")
   .attr("transform", "translate(" + margin + "," + margin + ")");
 
-  y.domain(d3.extent(data, function(d) { return d.Temperatura; }));
-
-
   chart.append("defs").append("clipPath")
   .attr("id", "clip")
   .append("rect")
