@@ -67,6 +67,10 @@ body {
     font-size:                  6em;
     letter-spacing:             -.07em;
     line-height:                .6em;
+    .valor {
+        // @include vertical-align();
+        display:                inline-block;
+    }
     .simbolo {
         @include transform(translateY(-70px));
         font-size:              .5em;
