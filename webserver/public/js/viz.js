@@ -12,7 +12,7 @@
   function loadData() {
     d3.json("/api/v1/", function(error, datajson) {
       timeout = setTimeout(loadData, 1000);
-      console.log(datajson.Temperatura);
+      // console.log(datajson.Temperatura);
     });
   }
   
